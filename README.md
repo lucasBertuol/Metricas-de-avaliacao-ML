@@ -21,10 +21,12 @@ Depois de importar as bibliotecas necessárias, defini o tamanho do dataset e o 
 
 A seguir eu treinei uma **rede neural** usando data augmentation e uma arquitetura robusta (8 camadas convolucionais + 2 camadas densas) para extrair features relevantes e classificar as imagens do dataset corretamente. Verifique o arquivo Métricas.ipynb para mais detalhes. Um resumo do modelo pode ser visto a seguir:
 <p align="center" width="100%">
+	<img width="492" height="81" alt="image" src="https://github.com/user-attachments/assets/2865f7d1-1500-4cc1-85d7-fd6812a92e35" />
 </p>
 
 Após treinar por 30 epochs com Learning rate adaptativa obtive resultados satisfatórios na validação e salvei os melhores pesos. Então, treinei o modelo no dataset de teste, onde o modelo exibiu esses indicadores:
 <p align="center" width="100%">
+	<img width="662" height="48" alt="image" src="https://github.com/user-attachments/assets/c781b030-d011-49eb-b69f-6678129543c0" />
 </p>
 
 ## Avaliação de resultados 📈
@@ -40,14 +42,17 @@ O primeiro passo para gerar as métricas de avaliação é calcular a **Matriz d
 
 Para construir a matriz, temos que converter o nosso dataset de teste (um tensor) em arrays de imagens e rótulos:
 <p align="center" width="100%">
+	<img width="562" height="182" alt="image" src="https://github.com/user-attachments/assets/8d1cc19b-fe38-41d0-9429-060a441d7068" />
 </p>
 
 Então, iremos definir as previsões do nosso modelo e classificá-las usando um **threshold padrão**, de >=0.5. Isso significa que se o nosso modelo tiver **50%** ou mais de certeza que um animal é um cachorro, esse animal será classificado como cachorro (1). Senão, o animal será classificado como gato (0). Código:
 <p align="center" width="100%">
+	<img width="604" height="187" alt="image" src="https://github.com/user-attachments/assets/9a52dc70-403c-4835-9c8c-6b9444547fdd" />
 </p>
 
 Para ter uma visão completa da **distribuição das classificações** em VP, VN, FP e FN eu criei duas matrizes de confusão, uma com proporções e outra com valores absolutos:
 <p align="center" width="100%">
+	<img width="545" height="493" alt="image" src="https://github.com/user-attachments/assets/b44be0b9-63e1-4573-8cab-a6a84c90b270" /><img width="521" height="420" alt="image" src="https://github.com/user-attachments/assets/7a85c75a-d2bb-4d95-8d9f-0df275a7f199" />
 </p>
 Usando esses valores absolutos podemos calcular manualmente cada métrica usando suas respectivas fórmulas: 
 
@@ -68,17 +73,27 @@ Usando esses valores absolutos podemos calcular manualmente cada métrica usando
  
 *Obs: if > 0 else 0.0 evita divisão por zero.
 
-Todas as métricas calculadas aqui dependem do threshold específico que definimos (>=0.5). <br>
+Todas as métricas calculadas aqui dependem do threshold específico que definimos (>=0.5). <br><br>
+
 **Resultados:**
 <p align="center" width="100%">
+	<img width="316" height="108" alt="image" src="https://github.com/user-attachments/assets/66f2565f-0756-4701-ab43-8b94260a5e7b" />
 </p>
 
-- **Acurácia:** Em 92% das imagens o modelo acerta a classe.
-- **Precisão:** Entre todas as imagens que o modelo previu como "cão", 91% realmente são cães. Se o modelo rotula "cão", há alta confiança de que é cão. 
-- **Sensibilidade (Recall):** De todos os cães do dataset, o modelo identifica 92% como "cão". Poucos cães são classificados errôneamente como gatos. 
-- **Especificidade:** De todos os gatos do dataset, o modelo identifica 92% como "gato". Poucos gatos são classificados errôneamente como cães. 
+- **Acurácia:** Em 92% das imagens o modelo acerta a classe. <br><br>
+- **Precisão:** Entre todas as imagens que o modelo previu como "cão", 91% realmente são cães. Se o modelo rotula "cão", há alta confiança de que é cão. <br><br>
+- **Sensibilidade (Recall):** De todos os cães do dataset, o modelo identifica 92% como "cão". Poucos cães são classificados errôneamente como gatos. <br><br>
+- **Especificidade:** De todos os gatos do dataset, o modelo identifica 92% como "gato". Poucos gatos são classificados errôneamente como cães. <br><br>
 - **F1:** Bom equilíbrio entre não acusar gato de ser cão (FP) e não deixar cães passarem despercebidos (FN). 
 
-Por fim, para medir a habilidade do classificador de **distinguir entre as classes** vamos visualizar a curva AUC-ROC. Essa métrica não depende de um threshold específico, ela gera uma visão geral da performance do modelo ao longo de todos os thresholds, sendo muito útil para quando temos classes desbalanceadas. As medidas utilizadas para calcular a curva são: TPR (True Positive rate), que é o mesmo que Recall e FPR, que representa com qual frequência o modelo classifica incorretamente instâncias negativas como positivas. Quanto mais **próxima de 1.0** a TPR for, e **maior a área sob a curva** mais preciso o modelo.
+Por fim, para medir a habilidade do classificador de **distinguir entre as classes** vamos visualizar a curva AUC-ROC. Essa métrica não depende de um threshold específico, ela gera uma visão geral da performance do modelo ao longo de todos os thresholds, sendo muito útil para quando temos classes desbalanceadas. As medidas utilizadas para calcular a curva são: TPR (True Positive rate), que é o mesmo que Recall e FPR, que representa com qual frequência o modelo classifica incorretamente instâncias negativas como positivas. Quanto mais **próxima de 1.0** a TPR for, e **maior a área sob a curva** mais preciso o modelo. Código:
+<p align="center" width="100%">
+	<img width="439" height="77" alt="image" src="https://github.com/user-attachments/assets/f5d017cf-2552-4718-a1d0-3a30a2711530" />
+</p>
+
+Gráfico:
+<p align="center" width="100%">
+	<img width="646" height="470" alt="image" src="https://github.com/user-attachments/assets/8502ff31-e0c7-46ab-b1f6-902a67b9a03d" />
+</p>
 ## Conclusão 🐱🐶
 Este projeto possibilitou uma compreensão mais profunda sobre a **importância** das métricas de avaliação na análise de modelos de inteligência artificial. Mais do que apenas treinar uma rede neural, o foco esteve em **interpretar seus resultados** e entender como medidas como acurácia, precisão, recall, especificidade, F1 e AUC-ROC refletem diferentes aspectos da performance. Essas métricas são fundamentais para diagnosticar erros, comparar modelos e alinhar a escolha do classificador com os **objetivos do problema real**, tornando-se indispensáveis no processo de desenvolvimento de soluções robustas em machine learning.
