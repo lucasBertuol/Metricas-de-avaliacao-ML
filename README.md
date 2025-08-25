@@ -101,3 +101,10 @@ Por fim, para medir a habilidade do classificador de **distinguir entre as class
 
 ## Conclusão 🐱🐶
 Este projeto possibilitou uma compreensão mais profunda sobre a **importância** das métricas de avaliação na análise de modelos de inteligência artificial. Mais do que apenas treinar uma rede neural, o foco esteve em **interpretar seus resultados** e entender como medidas como acurácia, precisão, recall, especificidade, F1 e AUC-ROC refletem diferentes aspectos da performance. Essas métricas são fundamentais para diagnosticar erros, comparar modelos e alinhar a escolha do classificador com os **objetivos do problema real**, tornando-se indispensáveis no processo de desenvolvimento de soluções robustas em machine learning.
+
+## Contato 📧
+Estou aberto a novas conexões e críticas construtivas! Você pode me encontrar em:
+
+Email: lucascondessabertuol@gmail.com
+
+LinkedIn: https://www.linkedin.com/in/lucasbertuol/
