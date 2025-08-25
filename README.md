@@ -64,7 +64,7 @@ Usando esses valores absolutos podemos calcular manualmente cada métrica usando
 	A proporção de previsões positivas verdadeiras do total de previsões positivas. <br><br>
 
 - **Sensibilidade (Recall)** = vp / (vp + fn) if (vp + fn) > 0 else 0.0  
-	A proporção de previsões positivas verdadeiras to total de instâncias positivas. <br><br>
+	A proporção de previsões positivas verdadeiras do total de instâncias positivas. <br><br>
 
 -  **Especificidade** = vn / (vn + fp) if (vn + fp) > 0 else 0.0 <br>
 	A proporção de previsões negativas verdadeiras do total de instâncias negativas. <br><br>
