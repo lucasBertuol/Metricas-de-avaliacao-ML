@@ -7,7 +7,6 @@ Métricas de avaliação são medidas quantitativas usadas para **avaliar a perf
 ## Estrutura do projeto 🗂️
 - **Métricas.ipynb:** Jupyter notebook com o código utilizado e comentários
 - **PetImages:** Dataset com 23.424  imagens (11.749 gatos, 11.675 cachorros)
-- **Checkpoints**: Arquivo Keras contendo os pesos do melhor modelo treinado
 ## Recursos Utilizados ⚒️
 - **Linguagem:**  Python 3.9
 - **Frameworks:** TensorFlow 2.8, Keras 2.8
